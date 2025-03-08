@@ -1,0 +1,15 @@
+<app-nav-bar></app-nav-bar>
+
+<section id="proyectos" class="proyectos">
+
+    @for (item of listaproyectos; track $index) {
+        <div class="carta-proyecto" [routerLink]="['/proyecto', item.id]">
+            
+                <img  [src]="item.imagenPrincipal" alt="">
+          
+        </div>
+    }
+
+</section>
+
+<app-footer></app-footer>

@@ -1,0 +1,54 @@
+nav {
+    width: 100%;
+    height: 120px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f5f5f5; /* Fondo suave */
+    padding: 10px;
+  }
+  
+  nav div ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+  }
+  
+  nav div ul li {
+    margin: 0 15px;
+  }
+  nav a{
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease;
+  }
+  nav a:hover{
+    color: #a19b99;
+  }
+
+  nav div ul li a {
+    font-size: 28px;
+    text-decoration: none;
+    color: #333; /* Color de texto principal */
+    transition: color 0.3s ease;
+  }
+  
+  nav div ul li a:hover {
+    color: #a19b99; /* Color del botón de login */
+  }
+  
+  .logo {
+    font-size: 50px;
+    font-weight: bold;
+    color: #333; /* Color neutro */
+    
+  }
+
+  nav div ul li a img.login {
+    width: 30px;  /* Ajusta el tamaño del logo */
+    height: auto;  /* Mantener la proporción */
+    margin-left: 10px;  /* Espaciado a la izquierda del logo */
+    cursor: pointer;
+  }
+  

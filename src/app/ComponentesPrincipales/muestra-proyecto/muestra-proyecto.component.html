@@ -1,0 +1,23 @@
+<app-nav-bar></app-nav-bar>
+
+<section class="contenedor">
+    <h1 class="titulo">{{ proyecto.titulo }}</h1>
+
+    <div class="img-principal">
+
+        <img [src]="proyecto.imagenPrincipal" alt="" class="full-width-image">
+        
+    </div>
+
+    <div class="galeria">
+        @for (item of proyecto.listaImg; track $index) {
+            <div class="imgs">
+
+                <img [src]="item.url" alt="" class="full-width-image">
+
+            </div>
+        }
+    </div>
+</section>
+
+<app-footer></app-footer>

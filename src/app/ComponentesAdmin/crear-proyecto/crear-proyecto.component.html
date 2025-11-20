@@ -1,0 +1,29 @@
+<app-nav-bar-admin></app-nav-bar-admin>
+
+<form [formGroup]="formulario" (ngSubmit)="subirProyecto()" class="form-proyecto">
+    <h1>New project</h1>
+    <div class="texto">
+        <div class="contenido">
+            <label for="">Ingrese el titulo</label>
+            <input formControlName="titulo" type="text">
+        </div>
+        <div class="contenido">
+            <label for="">Ingrese una descripcion del proyecto</label>
+            <textarea name="" formControlName="descripcion" id=""></textarea>
+        </div>
+    </div>
+
+    <ngx-dropzone (change)="onSelect($event)">
+        <ngx-dropzone-label>Carga la imagen que desees(Primer imagen es la principal)</ngx-dropzone-label>
+        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+        </ngx-dropzone-preview>
+    </ngx-dropzone>
+    <button class="btn">Subir proyecto</button>
+</form>
+
+<div class="image-preview-container">
+    <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f">
+        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+    </ngx-dropzone-image-preview>
+</div>

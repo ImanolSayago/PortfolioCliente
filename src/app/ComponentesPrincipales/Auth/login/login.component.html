@@ -3,7 +3,7 @@
 <section class="cont-sesion">
  
 
-  <form >
+  <form [formGroup]="formulario" (ngSubmit)="onLoginLogout()" >
     <div class="login-container">
       <h2>Iniciar Sesión</h2>
 

@@ -36,6 +36,7 @@ nav {
   
   nav div ul li a:hover {
     color: #a19b99; /* Color del botón de login */
+    cursor: pointer;
   }
   
   .logo {
@@ -51,9 +52,6 @@ nav {
     margin-left: 10px;  /* Espaciado a la izquierda del logo */
     cursor: pointer;
   }
-
-  .nav div ul li .logo-login{
-    color: #f5f5f5; ;
-    cursor: pointer;
-  }
   
+
+ 

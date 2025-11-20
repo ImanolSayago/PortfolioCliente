@@ -21,8 +21,8 @@
 }
 
 .full-width-image {
-    width: 100%;
-    height: 650px; /* Ajustada la altura */
+    width: 1920px;
+    height: 1080px; /* Ajustada la altura */
     display: block;
     object-fit: cover;
    

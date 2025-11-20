@@ -1,0 +1,27 @@
+<app-nav-bar-admin></app-nav-bar-admin>
+
+<section id="proyectos" class="proyectos">
+
+
+    @for (item of listaProyectos; track $index) {
+        <div>
+
+            <div class="carta-proyecto" >
+                <img  [src]="item.imagenPrincipal" alt="">
+               
+            </div>
+
+            <div class="btn-divisor">
+                <button (click)="deleteProyectoById(item.id??0)" class="btn-eliminar">Eliminar</button>
+                <button [routerLink]="['/proyectoedit', item.id]" class="btn-editar">Editar</button>
+            </div>
+       
+        </div>
+       
+        
+        
+    }
+
+</section>
+
+<app-footer></app-footer>

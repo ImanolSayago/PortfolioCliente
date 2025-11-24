@@ -1,23 +1,30 @@
 <app-nav-bar></app-nav-bar>
 
-<section class="contenedor">
-    <h1 class="titulo">{{ proyecto.titulo }}</h1>
+<section class="project-showcase">
+  <!-- Título grande y elegante -->
+  <h1 class="project-title">{{ proyecto.titulo }}</h1>
 
-    <div class="img-principal">
+  <!-- Imagen principal (hero full-bleed) -->
+  <div class="hero-image">
+    <img 
+      [src]="proyecto.imagenPrincipal" 
+      [alt]="proyecto.titulo"
+      loading="eager"
+      class="image">
+  </div>
 
-        <img [src]="proyecto.imagenPrincipal" alt="" class="full-width-image">
-        
-    </div>
-
-    <div class="galeria">
-        @for (item of proyecto.listaImg; track $index) {
-            <div class="imgs">
-
-                <img [src]="item.url" alt="" class="full-width-image">
-
-            </div>
-        }
-    </div>
+  <!-- Galería vertical -->
+  <div class="gallery">
+    @for (img of proyecto.listaImg; track img.url) {
+      <div class="gallery-item">
+        <img 
+          [src]="img.url" 
+          [alt]="proyecto.titulo + ' - imagen adicional'"
+          loading="lazy"
+          class="image">
+      </div>
+    }
+  </div>
 </section>
 
 <app-footer></app-footer>

@@ -1,29 +1,31 @@
 <app-nav-bar-admin></app-nav-bar-admin>
 
+<section class="admin-header">
+  <input 
+    type="text" 
+    placeholder="Buscar proyecto por titulo..."
+    (input)="filtrarProyectos($any($event.target).value)"
+    class="search-input"
+  />
+</section>
+
 <section class="admin-projects">
-  @for (item of listaProyectos; track item.id) {
+  @for (item of listaFiltrada; track item.id) {
     <article class="project-card">
-      <!-- Imagen -->
       <div class="image-wrapper">
         <img [src]="item.imagenPrincipal" [alt]="item.titulo || 'Proyecto'" />
       </div>
 
-      <!-- Info + Botones debajo -->
       <div class="card-content">
         <h3 class="project-title">{{ item.titulo || 'Sin título' }}</h3>
 
         <div class="card-actions">
-          <button 
-            class="btn-edit" 
-            [routerLink]="['/proyectoedit', item.id]">
-            <img src="img/editar.png" alt="">
-            <i class="fas fa-edit"></i> Editar
+          <button class="btn-edit" [routerLink]="['/proyectoedit', item.id]">
+            <img src="img/editar.png" alt=""> Editar
           </button>
-          <button 
-            class="btn-delete" 
-            (click)="deleteProyectoById(item.id ?? 0)">
-            <img src="img/borrar2.png" alt="">
-            <i class="fas fa-trash-alt"></i> Eliminar
+
+          <button class="btn-delete" (click)="deleteProyectoById(item.id ?? 0)">
+            <img src="img/borrar2.png" alt=""> Eliminar
           </button>
         </div>
       </div>

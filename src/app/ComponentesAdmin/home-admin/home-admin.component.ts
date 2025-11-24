@@ -12,48 +12,51 @@ import { FormBuilder, Validators } from '@angular/forms';
   imports: [NavBarAdminComponent, FooterComponent,RouterLink],
   templateUrl: './home-admin.component.html',
   styleUrl: './home-admin.component.css'
-})
-export class HomeAdminComponent implements OnInit{
+})export class HomeAdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.traerProyectos();
   }
 
   rutas = inject(Router);
-  listaProyectos:Proyectos[]=[];
+  listaProyectos: Proyectos[] = [];
+  listaFiltrada: Proyectos[] = [];
+
   serviceProyectos = inject(ProyectosService);
 
-  traerProyectos()
-  {
+  traerProyectos() {
     this.serviceProyectos.getProyectos().subscribe({
-      next:(lista)=>
-      {
-
-        this.listaProyectos=lista;
+      next: (lista) => {
+        this.listaProyectos = lista;
+        this.listaFiltrada = lista; 
       },
-      error:(err:Error)=>
-      {
+      error: (err: Error) => {
         console.log(err.message);
       }
-    })
+    });
   }
 
-  irCrearProyecto()
-  {
+  filtrarProyectos(texto: string) {
+    const t = texto.toLowerCase().trim();
+
+    this.listaFiltrada = this.listaProyectos.filter(p =>
+      p.titulo?.toLowerCase().includes(t)
+    );
+  }
+
+  irCrearProyecto() {
     this.rutas.navigate(["CrearProyecto"]);
   }
 
-  deleteProyectoById(id:number)
-  {
+  deleteProyectoById(id: number) {
     this.serviceProyectos.deleteProyectoID(id).subscribe({
-      next:()=>
-      {
-        alert("Proyecto eliminado con exito");
+      next: () => {
+        alert("Proyecto eliminado con éxito");
+        this.traerProyectos();
       },
-      error:(err:Error)=>
-      {
+      error: (err: Error) => {
         console.log(err.message);
       }
-    })
+    });
   }
 }

@@ -1,60 +1,104 @@
-nav {
-    width: 100%;
-    height: 100px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #f5f5f5; /* Fondo suave */
-    padding: 10px;
-  }
-  
-  nav div ul {
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-  }
-  
-  nav div ul li {
-    margin: 0 15px;
-  }
-  nav a{
-    text-decoration: none;
-    color: #333;
-    transition: color 0.3s ease;
-    font-weight: 500;
-  }
-  nav a:hover{
-    color: #a19b99;
-  }
+/* ---------------- NAV DESKTOP ---------------- */
+.nav {
+  width: 100%;
+  height: 90px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f5f5f5;
+  padding: 0 25px;
+  position: relative;
+  z-index: 100;
+}
 
-  nav div ul li a {
-    font-size: 28px;
-    text-decoration: none;
-    color: #333; /* Color de texto principal */
-    transition: color 0.3s ease;
-  }
-  
-  nav div ul li a:hover {
-    color: #a19b99; /* Color del botón de login */
-  }
-  
-  .logo {
-    font-size: 50px;
-    font-weight: bold;
-    color: #333; /* Color neutro */
-    
-  }
+.nav-left .logo {
+  font-size: 42px;
+  font-weight: 700;
+  color: #333;
+  text-decoration: none;
+}
 
-  nav div ul li a img.login {
-    width: 30px;  /* Ajusta el tamaño del logo */
-    height: auto;  /* Mantener la proporción */
-    margin-left: 10px;  /* Espaciado a la izquierda del logo */
+/* UL desktop */
+.nav-right ul {
+  display: flex;
+  gap: 35px;
+  list-style: none;
+}
+
+.nav-right ul li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 24px;
+  font-weight: 500;
+  transition: color .3s ease;
+}
+
+.nav-right ul li a:hover {
+  color: #7d7d7d;
+}
+
+nav div ul li a img.login {
+    width: 30px; 
+    height: auto;  
+    margin-left: 10px;  
     cursor: pointer;
   }
 
   .nav div ul li .logo-login{
     color: #f5f5f5; ;
-    cursor: pointer;
+    cursor: pointer;}
+
+.hamburger {
+  width: 40px;
+  height: 32px;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.hamburger span {
+  display: block;
+  height: 4px;
+  background: #333;
+  border-radius: 4px;
+  transition: 0.4s;
+}
+
+/* ---------------- MOBILE ---------------- */
+@media (max-width: 900px) {
+  .hamburger {
+    display: flex;
   }
-  
+
+  .nav-right {
+    position: absolute;
+    top: 90px;
+    right: 0;
+    width: 100%;
+    background: #f5f5f5;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height .4s ease-in-out;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .nav-right.open {
+    max-height: 280px;
+  }
+
+  .nav-right ul {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 0;
+    gap: 22px;
+  }
+
+  .nav-right ul li a {
+    font-size: 22px;
+  }
+
+  .nav-left .logo {
+    font-size: 30px;
+  }
+}

@@ -11,6 +11,7 @@ import { Router, RouterLink } from '@angular/router';
 export class NavBarAdminComponent {
 rutas = inject(Router);
 
+menuOpen = false;
 salir()
 {
   localStorage.clear();

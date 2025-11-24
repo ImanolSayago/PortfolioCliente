@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class NavBarComponent {
   rutas = inject(Router);
+menuOpen = false;
 
   irLogin()
   {

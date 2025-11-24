@@ -2,13 +2,18 @@
 
 <section id="proyectos" class="proyectos">
 
-    @for (item of listaproyectos; track $index) {
-        <div class="carta-proyecto" [routerLink]="['/proyecto', item.id]">
-            
-                <img  [src]="item.imagenPrincipal" alt="">
-    
+  @for (item of listaproyectos; track $index) {
+    <div class="carta-proyecto" [routerLink]="['/proyecto', item.id]">
+      
+      <div class="img-container">
+        <img [src]="item.imagenPrincipal" alt="">
+        <div class="titulo-overlay">
+          {{ item.titulo }}
         </div>
-    }
+      </div>
+
+    </div>
+  }
 
 </section>
 

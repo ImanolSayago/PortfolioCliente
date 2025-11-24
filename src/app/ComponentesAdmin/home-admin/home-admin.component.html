@@ -1,27 +1,34 @@
 <app-nav-bar-admin></app-nav-bar-admin>
 
-<section id="proyectos" class="proyectos">
+<section class="admin-projects">
+  @for (item of listaProyectos; track item.id) {
+    <article class="project-card">
+      <!-- Imagen -->
+      <div class="image-wrapper">
+        <img [src]="item.imagenPrincipal" [alt]="item.titulo || 'Proyecto'" />
+      </div>
 
+      <!-- Info + Botones debajo -->
+      <div class="card-content">
+        <h3 class="project-title">{{ item.titulo || 'Sin título' }}</h3>
 
-    @for (item of listaProyectos; track $index) {
-        <div>
-
-            <div class="carta-proyecto" >
-                <img  [src]="item.imagenPrincipal" alt="">
-               
-            </div>
-
-            <div class="btn-divisor">
-                <button (click)="deleteProyectoById(item.id??0)" class="btn-eliminar">Eliminar</button>
-                <button [routerLink]="['/proyectoedit', item.id]" class="btn-editar">Editar</button>
-            </div>
-       
+        <div class="card-actions">
+          <button 
+            class="btn-edit" 
+            [routerLink]="['/proyectoedit', item.id]">
+            <img src="img/editar.png" alt="">
+            <i class="fas fa-edit"></i> Editar
+          </button>
+          <button 
+            class="btn-delete" 
+            (click)="deleteProyectoById(item.id ?? 0)">
+            <img src="img/borrar2.png" alt="">
+            <i class="fas fa-trash-alt"></i> Eliminar
+          </button>
         </div>
-       
-        
-        
-    }
-
+      </div>
+    </article>
+  }
 </section>
 
 <app-footer></app-footer>

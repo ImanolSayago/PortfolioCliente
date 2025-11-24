@@ -8,5 +8,5 @@ export interface Proyectos {
   titulo?: string;
   descripcion?: string;
   imagenPrincipal:string,
-  listaImg?: ImagenProyecto[]; // Lista de URLs de las imágenes
+  listaImg?: ImagenProyecto[];
 }

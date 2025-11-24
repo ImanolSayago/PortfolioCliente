@@ -21,7 +21,7 @@ export class HomeUserComponent implements OnInit{
     this.router.events.pipe(
          filter((event): event is NavigationEnd => event instanceof NavigationEnd)
        ).subscribe(() => {
-         window.scrollTo(0, 0); // Restablecer el scroll al inicio
+         window.scrollTo(0, 0);
        });
   }
 

@@ -17,4 +17,31 @@ menuOpen = false;
     this.rutas.navigate(["inicioSesion"]);
   }
 
+  goAbout()
+  {
+    this.rutas.navigate(['sobre-mi']);
+  }
+
+  goContact()
+  {
+    this.rutas.navigate(['contact']);
+  }
+
+  scrollTo(section: string) {
+  const element = document.getElementById(section);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  if (!element) {
+    this.rutas.navigate(['/homeUser']).then(() => {
+      setTimeout(() => {
+        const el = document.getElementById(section);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      },300);
+    });
+  }
+
+  this.menuOpen = false; 
+}
+
 }

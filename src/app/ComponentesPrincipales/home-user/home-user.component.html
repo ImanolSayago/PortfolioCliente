@@ -1,20 +1,25 @@
 <app-nav-bar></app-nav-bar>
 
+<div class="presentacion-hero">
+  <div class="imagen-contenedor">
+    <img src="img/portada.jpg" alt="Proyectos" class="portada-imagen">
+  </div>
+
+</div>
+
 <section id="proyectos" class="proyectos">
-
-  @for (item of listaproyectos; track $index) {
-    <div class="carta-proyecto" [routerLink]="['/proyecto', item.id]">
-      
-      <div class="img-container">
-        <img [src]="item.imagenPrincipal" alt="">
-        <div class="titulo-overlay">
-          {{ item.titulo }}
+  <div class="container">
+    <div class="grid-proyectos">
+      @for (item of listaproyectos; track $index) {
+        <div class="carta-proyecto" [routerLink]="['/proyecto', item.id]">
+          <div class="img-container">
+            <img [src]="item.imagenPrincipal" [alt]="item.titulo">
+            <div class="titulo-overlay">{{ item.titulo }}</div>
+          </div>
         </div>
-      </div>
-
+      }
     </div>
-  }
-
+  </div>
 </section>
 
 <app-footer></app-footer>

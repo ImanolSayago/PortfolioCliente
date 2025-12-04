@@ -1,42 +1,24 @@
 <footer id="footer" class="footer">
 
-    <div class="nav-footer">
 
-        <ul>
-            <li>
-                <a href="">Inicio</a>
-            </li>
-            <li>
-                <a href="">Proyectos</a>
-            </li>
-            <li>
-                <a (click)="irLogin()" class="lg">
-                    <img class="login" src="img/login-logo.png" alt="">
-                </a>
-            </li>
-        </ul>
+    <div class="nav-left">
+    <a href="" class="logo">Ignacio Yañez</a>
+    <p class="txt">Diseño/Ilustración</p>
     </div>
 
-    <div class="redes">
-
+     <div class="nav-footer">
         <ul>
             <li>
-                <a href="" target="_blank">
-                    <img class="img-logo" src="img/logo-behance.png" alt="">
-                </a>
+                <a (click)="scrollTo('proyectos')">Proyectos</a>
             </li>
             <li>
-                <a href="https://www.instagram.com/ignacio.yanez.dg/" target="_blank">
-                    <img class="img-logo" src="img/logo-instagram.png" alt="">
-                </a>
+                <a (click)="goAbout()">Sobre mi</a>
             </li>
+
             <li>
-                <a href="" target="_blank">
-                    <img class="img-logo" src="img/logo-instagram.png" alt="">
-                </a>
+                <a (click)="goContact()" >Contacto</a>
             </li>
         </ul>
-
     </div>
 
 </footer>

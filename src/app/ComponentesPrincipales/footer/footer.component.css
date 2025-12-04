@@ -1,5 +1,4 @@
 .footer {
-    background-color: #f5f5f5;
     color: white;
     padding: 20px;
     height: 300px;
@@ -8,7 +7,28 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+     box-shadow: 0 -2px 1px rgba(0, 0, 0, 0.048);
 }
+a{
+  cursor: pointer;
+}
+.nav-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-left .logo {
+  font-size: 35px;
+  font-weight: 700;
+  color:rgba(95, 95, 95, 0.788);
+  text-decoration: none;
+}
+.nav-left .txt{
+  color:rgba(95, 95, 95, 0.788);
+  font-size: 22px;
+} 
 
 footer ul{
     list-style: none;
@@ -19,9 +39,9 @@ footer ul li{
 }
 
 footer .nav-footer ul li a{
-    font-size: 28px;
+    font-size: 22px;
     text-decoration: none;
-    color: #333;
+    color: #000000;
     transition: color 0.3s ease;
     font-weight: 500;
     
@@ -31,19 +51,6 @@ footer .nav-footer ul li a:hover{
     color: #a19b99;
 }
 
-footer .nav-footer ul li a img.login{
-    width: 40px;  /* Ajusta el tamaño del logo */
-    height: auto;  /* Mantener la proporción */
-    margin-left: 10px;  /* Espaciado a la izquierda del logo */
-    cursor: pointer;
-}
-
-footer .redes ul li a .img-logo{
-    width: 40px;  /* Ajusta el tamaño del logo */
-    height: auto;  /* Mantener la proporción */
-    margin-left: 10px;  /* Espaciado a la izquierda del logo */
-    cursor: pointer;
-}
 
 .lg{
     cursor: pointer;

@@ -1,9 +1,9 @@
 <nav class="nav">
   <div class="nav-left">
     <a href="" class="logo">Ignacio Yañez</a>
+    <p class="txt">Diseño/Ilustración</p>
   </div>
 
-  <!-- Botón hamburguesa -->
   <div class="hamburger" (click)="menuOpen = !menuOpen">
     <span></span>
     <span></span>
@@ -12,10 +12,9 @@
 
   <div class="nav-right" [class.open]="menuOpen">
     <ul>
-      <li><a class="logo-login" (click)="irLogin()">Login</a></li>
-      <li><a href="">About</a></li>
-      <li><a href="">Projects</a></li>
-      <li><a href="">Contact</a></li>
+      <li><a (click)="scrollTo('proyectos')">Proyectos</a></li>
+      <li><a (click)="goAbout()">Sobre mi</a></li>
+      <li><a (click)="goContact()">Contacto</a></li>
     </ul>
   </div>
 </nav>

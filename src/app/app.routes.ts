@@ -7,6 +7,8 @@ import { authGuardFn } from './ComponentesPrincipales/Auth/Guard/Auth-guard-fn';
 import { HomeAdminComponent } from './ComponentesAdmin/home-admin/home-admin.component';
 import { CrearProyectoComponent } from './ComponentesAdmin/crear-proyecto/crear-proyecto.component';
 import { EditProyectoComponent } from './ComponentesAdmin/edit-proyecto/edit-proyecto.component';
+import { AboutMeComponent } from './ComponentesPrincipales/about/about-me/about-me.component';
+import { ContactComponent } from './ComponentesPrincipales/contact/contact/contact.component';
 
 export const routes: Routes = [
 
@@ -24,9 +26,9 @@ export const routes: Routes = [
         path:"proyecto/:id", component: MuestraProyectoComponent,
         
     },
-
+      {path:'sobre-mi',component:AboutMeComponent},
+      {path:'contact', component:ContactComponent},
     { path: '', redirectTo: 'homeUser', pathMatch: 'full' },
-
 
 
     ///RUTAS ADMIN///

@@ -1,31 +1,42 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProyectoEditDTO, ProyectosService } from '../../Services/proyectos.service';
 import { NavBarAdminComponent } from '../nav-bar-admin/nav-bar-admin.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CloudinaryOptimizePipe } from '../../pipes/cloudinary-optimize.pipe';
+import { ModalComponent } from '../../Shared/Components/modal/modal.component';
 
 @Component({
   selector: 'app-edit-proyecto',
   standalone: true,
-  imports: [ReactiveFormsModule, NavBarAdminComponent,NgxDropzoneModule, CommonModule],
+  imports: [CloudinaryOptimizePipe, ReactiveFormsModule, NavBarAdminComponent, NgxDropzoneModule, CommonModule, ModalComponent],
   templateUrl: './edit-proyecto.component.html',
   styleUrl: './edit-proyecto.component.css'
 })
-export class EditProyectoComponent implements OnInit{
-  files: any[] = [];
+export class EditProyectoComponent implements OnInit {
+@ViewChild('modalSucces') modalSuccess!:ModalComponent;
+  @ViewChild('modalError') modalError!:ModalComponent;
+
+  files: any[] = []; // Aquí habrá mezclas de String y File
   proyectoID: number = 0;
   route = inject(ActivatedRoute);
   router = inject(Router);
   servicioProyectos = inject(ProyectosService);
   fb = inject(FormBuilder);
+  cd = inject(ChangeDetectorRef);
+  cargando:boolean = false;
 
   formulario = this.fb.nonNullable.group({
     titulo: ['', Validators.required],
     descripcion: ['', Validators.required],
   });
+
+  // Función auxiliar para usar en el HTML
+  esString(val: any): boolean {
+    return typeof val === 'string';
+  }
 
   onSelect(event: any): void {
     this.files.push(...event.addedFiles);
@@ -40,42 +51,43 @@ export class EditProyectoComponent implements OnInit{
       alert('El formulario no está completo');
       return;
     }
-
-    const proyecto: ProyectoEditDTO = {
-      titulo: this.formulario.value.titulo ?? '',
-      descripcion: this.formulario.value.descripcion ?? '',
-      imagenesExistentesUrls: this.files.filter(file => typeof file === 'string').map(file => file as string),
-    };
+    this.cargando = true;
 
     const formData = new FormData();
-    formData.append('titulo', proyecto.titulo);
-    formData.append('descripcion', proyecto.descripcion);
-    proyecto.imagenesExistentesUrls.forEach(url => formData.append('imagenesExistentesUrls', url));
+    formData.append('titulo', this.formulario.value.titulo ?? '');
+    formData.append('descripcion', this.formulario.value.descripcion ?? '');
 
-    this.files.filter(file => typeof file !== 'string').forEach(file => formData.append('archivos', file));
+    // 1. Filtramos las imágenes que se quedaron como URL (Strings)
+    const imagenesExistentesUrls = this.files.filter(f => typeof f === 'string');
+    
+    // Si no hay existentes, enviamos una cadena vacía para que Spring no falle
+    if (imagenesExistentesUrls.length > 0) {
+      imagenesExistentesUrls.forEach(url => formData.append('imagenesExistentesUrls', url));
+    } else {
+      formData.append('imagenesExistentesUrls', '');
+    }
 
-    console.log('FormData.getAll("imagenesExistentesUrls"):', formData.getAll('imagenesExistentesUrls'));
-    console.log('FormData:', formData);
+    // 2. Filtramos los ARCHIVOS nuevos seleccionados en el dropzone
+    const nuevosArchivos = this.files.filter(f => typeof f !== 'string');
+    nuevosArchivos.forEach(file => formData.append('archivos', file));
 
     this.servicioProyectos.editProyecto(this.proyectoID, formData).subscribe({
-      next: (response) => {
-        console.log(response);
-        alert('Proyecto editado con éxito');
+      next: () => {
+        this.cargando = false;
+       this.modalSuccess.open('Proyecto editado con exito')
+       this.cd.detectChanges();
+        this.router.navigate(['/admin']);
       },
       error: (error) => {
         console.error(error);
-        alert('Error al editar el proyecto');
+         this.cargando = false;
+       this.modalError.open('El proyecto no se pudo editar, intente nuevamente');
+       this.cd.detectChanges();
       },
     });
   }
 
   ngOnInit(): void {
-    this.router.events
-      .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
-      .subscribe(() => {
-        window.scrollTo(0, 0);
-      });
-
     this.route.paramMap.subscribe((params) => {
       this.proyectoID = Number(params.get('id'));
       this.cargarProyecto();
@@ -83,33 +95,22 @@ export class EditProyectoComponent implements OnInit{
   }
 
   cargarProyecto(): void {
-    this.servicioProyectos.getProyectoByID(this.proyectoID).subscribe(async (proyecto) => {
+    this.servicioProyectos.getProyectoByID(this.proyectoID).subscribe((proyecto) => {
       this.formulario.patchValue({
         titulo: proyecto.titulo,
         descripcion: proyecto.descripcion,
       });
-      if (proyecto.listaImg) {
-        await this.cargarImagenes(proyecto.listaImg);
-      }
-      // No llamamos a subirProyecto() aquí
-    }, (error) => {
-      console.log(error.message);
-    });
-  }
 
-  async cargarImagenes(imagenes: any[]): Promise<void> {
-    const promises = imagenes.map(async (imagen) => {
-      try {
-        const response = await fetch(imagen.url);
-        const blob = await response.blob();
-        const file = new File([blob], imagen.url.substring(imagen.url.lastIndexOf('/') + 1), {
-          type: blob.type,
-        });
-        this.files.push(file);
-      } catch (error) {
-        console.error('Error al cargar la imagen:', error);
+      // Vaciamos por seguridad antes de cargar
+      this.files = [];
+
+      // Metemos las URLs directamente como STRINGS (Sin fetch)
+      if (proyecto.imagenPrincipal) {
+        this.files.push(proyecto.imagenPrincipal);
+      }
+      if (proyecto.listaImg) {
+        proyecto.listaImg.forEach((img: any) => this.files.push(img.url));
       }
     });
-    await Promise.all(promises);
   }
 }

@@ -1,109 +1,211 @@
+/* Estenedor Principal */
 .form-proyecto {
-    width: 550px; /* Ancho ajustable */
-    height: 630px;
-    margin: 50px auto; /* Centrar y espacio */
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-family: sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    box-shadow: 0px 4px 8px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 650px;
+  margin: 80px auto;
+  padding: 40px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
 }
 
-.form-proyecto h1{
-    font-size: 50px;
-    margin-bottom: 25px;
-    font-weight: bold;
-    text-transform: uppercase;
+.form-proyecto h1 {
+  font-size: 28px;
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
-.form-proyecto .contenido textarea{
-    width: 417px;
-    height: 100px;
-    resize: none;
-    font-size: 15px;
-}
-
-
-.form-proyecto .contenido {
-    margin-bottom: 15px;
+.contenido {
+  margin-bottom: 30px;
 }
 
 .form-proyecto label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    font-size: 20px;
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #555;
+  margin-bottom: 12px;
 }
 
-.form-proyecto input[type="text"] {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+/* Inputs y Textarea */
+.form-proyecto input[type="text"],
+.form-proyecto textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1.5px solid #eee;
+  border-radius: 8px;
+  font-size: 16px;
+  background: #fafafa;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
 }
 
-button {
-    width: 50%;
-    padding: 15px;
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
-    background: #616568;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-    margin-top: 20px;
-  }
-  
-  button:hover {
-    background-color: #a19b99;
-    box-shadow: 0px 6px 10px #cfcfcf;
-  }
+.form-proyecto input:focus,
+.form-proyecto textarea:focus {
+  outline: none;
+  border-color: #000;
+  background: #fff;
+}
 
-/* Estilos para ngx-dropzone (puedes necesitar ajustar según tu implementación específica) */
+.form-proyecto textarea {
+  height: 120px;
+  resize: none;
+}
+
+/* Botón Principal */
+button.btn {
+  width: 100%;
+  background: #fff;
+  color: #000;
+  padding: 16px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  font-size: 14px;
+  border: 1px solid black;
+  margin-top: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.6s ease, color 0.6s ease;
+}
+
+button.btn:hover:not(:disabled) {
+  background: #000;
+  color: #fff;
+}
+
+button.btn:disabled {
+  border-color: #eee;
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Dropzone (Área de subida) */
 ngx-dropzone {
-    border: 2px dashed #aaa;
-    padding: 20px;
-    text-align: center;
-    cursor: pointer;
-    margin-bottom: 15px;
-    width: 500px;
+  border: 2px dashed #ddd !important;
+  background: #fafafa !important;
+  border-radius: 12px !important;
+  transition: all 0.3s ease;
 }
 
-ngx-dropzone-preview {
-    border: 1px solid #eee;
-    padding: 10px;
-    margin-top: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+ngx-dropzone:hover {
+  border-color: #000 !important;
 }
 
-
-
+/* Contenedor de Galería */
 .image-preview-container {
-    display: flex;
-    flex-wrap: nowrap; /* Evita que las imágenes se envuelvan */
-    margin-top: 20px;
-    max-width: 90%; /* Ajusta el ancho máximo según tus necesidades */
-    overflow-x: auto; /* Agrega una barra de desplazamiento horizontal */
-    overflow-y: hidden; /* Oculta la barra de desplazamiento vertical si aparece */
-    white-space: nowrap; /* Evita el salto de línea entre las imagenes */
-}
-ngx-dropzone-image-preview {
-    margin: 5px;
-    max-width: 150px;
-    flex-shrink: 0;
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding: 15px 0;
+  margin-top: 10px;
 }
 
-ngx-dropzone-image-preview img {
-    width: 100%;
-    height: auto;
-    display: block;
+.preview-card {
+  position: relative;
+  flex-shrink: 0;
+}
+ngx-dropzone-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Estilo opcional para el icono para que se vea mejor centrado */
+.upload-icon {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+/* UNIFICACIÓN DE ESTILOS: Imágenes viejas (wrapper) y nuevas (componente) */
+.image-wrapper, 
+::ng-deep ngx-dropzone-image-preview {
+  width: 140px !important;
+  min-width: 140px !important;
+  height: 140px !important;
+  border-radius: 12px !important;
+  border: 1.5px solid #eee !important;
+  overflow: hidden;
+  margin: 0 !important;
+}
+
+.img-preview,
+::ng-deep ngx-dropzone-image-preview img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+/* UNIFICACIÓN DE BOTONES: Tu botón manual y el de la librería */
+.btn-remove,
+::ng-deep ngx-dropzone-remove-badge {
+  position: absolute !important;
+  top: 5px !important;
+  right: 5px !important;
+  width: 24px !important;
+  height: 24px !important;
+  background: #000 !important;
+  color: white !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  opacity: 1 !important;
+  border: none;
+  cursor: pointer;
+}
+
+/* Badges */
+.badge-principal, .badge-nuevo {
+  position: absolute;
+  font-size: 10px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  z-index: 10;
+}
+
+.badge-principal {
+  background: #000;
+  color: #fff;
+  top: 10px;
+  left: 10px;
+}
+
+.badge-nuevo {
+  background: #28a745;
+  color: white;
+  bottom: 10px;
+  left: 10px;
+}
+
+/* Fix para labels internos de la librería */
+::ng-deep ngx-dropzone-label {
+  width: 100%;
+  height: 100%;
+  margin: 0 !important;
+  position: relative;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-top-color: #746565; 
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto;
+}
+
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }

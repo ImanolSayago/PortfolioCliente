@@ -1,48 +1,63 @@
 .sobre-mi {
-  padding: 120px 20px 80px;
   width: 100%;
-  text-align: start;
-  height: 80vh;
-    display: flex;       
+  height: calc(100vh - 250px);
+  display: flex;       
   justify-content: center;  
-  align-items: center;   
+  align-items: center;
+  position: relative;
+  /* Aplicamos el margen como padding lateral para que el contenido se empuje hacia adentro */
+  padding: 0 279px; 
+  box-sizing: border-box; /* Importante para que el padding no sume al ancho total */
 }
 .titulo-sobre-mi {
-  font-size: 30px;
-  margin-bottom: 60px;
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: 400;
+  position: absolute;
+  top: -135px;
+  left: 0;
+  margin: 0;
 }
-
-/* CONTENEDOR GENERAL */
 
 .contenedor-sobre-mi {
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
+  /* Eliminamos el max-width fijo para que mande el padding de 279px de la sección */
+  max-width: none; 
+  margin: 0;
   display: flex;
-
   flex-direction: column;
   align-items: start;
-  justify-content: center;
   gap: 25px;
-
+  position: relative; 
 }
-
-
-
-/* IMAGEN CHICA */
-
 .img-sobre-mi {
-    margin-bottom: 5px;
-  width: 135px;
-  height: 135px;
+  width: 125px;
+  height: 155px;
   object-fit: cover;
+  object-position: center top;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  margin-bottom: 5px;
 }
 
 .texto-sobre-mi {
   font-size: 20px;
   line-height: 1.7;
   padding-bottom: 20px;
-  border-bottom: 2px solid black;
+  color: #333;
 }
 
+@media (max-width: 600px) {
+  .sobre-mi {
+    height: auto;
+    padding-top: 150px; 
+    padding-bottom: 50px;
+  }
+
+  .titulo-sobre-mi {
+    top: -80px;
+    font-size: 22px;
+  }
+  
+  .texto-sobre-mi {
+    font-size: 18px;
+  }
+}

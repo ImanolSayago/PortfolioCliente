@@ -1,15 +1,16 @@
-/* ---------------- NAV DESKTOP ---------------- */
 .nav {
   width: 100%;
   height: 120px;
   display: flex;
-  justify-content: space-around;
+
+  justify-content: space-between; 
   align-items: center;
   background: #ffffff;
-  padding: 25px;
- box-shadow: 0 2px 1px rgba(0, 0, 0, 0.048);
+  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.048);
   position: relative;
   z-index: 100;
+  padding: 0 279px; 
+  box-sizing: border-box; 
 }
 a{
   cursor: pointer;
@@ -17,26 +18,27 @@ a{
 .nav-left {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   justify-content: center;
   gap: 2px;
 }
 
 .nav-left .logo {
   font-size: 35px;
-  font-weight: 700;
+  font-weight: 400;
   color: #000000;
   text-decoration: none;
 }
 .nav-left .txt{
   color:rgba(95, 95, 95, 0.788);
   font-size: 22px;
+  font-style: italic;
 } 
 
 /* UL desktop */
 .nav-right ul {
   display: flex;
-  gap: 35px;
+  gap: 50px;
   list-style: none;
 }
 

@@ -13,7 +13,7 @@
   @for (item of listaFiltrada; track item.id) {
     <article class="project-card">
       <div class="image-wrapper">
-        <img [src]="item.imagenPrincipal" [alt]="item.titulo || 'Proyecto'" />
+        <img [src]="item.imagenPrincipal |  cloudinaryOptimize:2000:2000" [alt]="item.titulo || 'Proyecto'" />
       </div>
 
       <div class="card-content">
@@ -32,3 +32,6 @@
     </article>
   }
 </section>
+
+<app-modal [title]="'Operación exitosa'" #modalSucces [type]="'success'"></app-modal>
+<app-modal #modalError [type]="'error'"></app-modal>

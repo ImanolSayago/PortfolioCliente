@@ -1,0 +1,32 @@
+@if (isOpen) {
+  <div class="modal-overlay" (click)="close()">
+    <div class="modal-alert-card" (click)="$event.stopPropagation()">
+      <div class="modal-alert-header" [ngClass]="type">
+        <span class="material-symbols-outlined">
+          {{ type === 'error' ? 'error' : type === 'success' ? 'check_circle' : 'info' }}
+        </span>
+        <h3>{{ title }}</h3>
+      </div>
+      
+      <div class="modal-alert-body">
+        <p>{{ message }}</p>
+      </div>
+
+      <div class="modal-alert-actions">
+        @if (cancelBtnText !== "") {
+            <button class="btn-modal btn-cancel" (click)="close()">
+           {{ cancelBtnText }}
+            </button>
+          }
+
+       @if (btnText !== "") {
+    <button class="btn-modal" 
+            [ngClass]="'btn-' + type" 
+            (click)="cancelBtnText !== '' ? confirm() : close()">
+      {{ btnText }}
+    </button>
+        }
+      </div>
+    </div>
+  </div>
+}

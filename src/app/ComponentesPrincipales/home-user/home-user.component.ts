@@ -1,16 +1,16 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { NavBarComponent } from "../nav-bar/nav-bar.component";
 import { Proyectos } from '../../Interface/Proyectos';
-import { FooterComponent } from "../footer/footer.component";
-import { AuthServiceService } from '../../Services/auth-service.service';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { ProyectosService } from '../../Services/proyectos.service';
 import { filter } from 'rxjs';
+import { CloudinaryOptimizePipe } from '../../pipes/cloudinary-optimize.pipe';
+import { AboutMeComponent } from "../about/about-me/about-me.component";
 
 @Component({
   selector: 'app-home-user',
   standalone: true,
-  imports: [NavBarComponent, FooterComponent,RouterLink],
+  imports: [NavBarComponent, RouterLink, CloudinaryOptimizePipe, AboutMeComponent],
   templateUrl: './home-user.component.html',
   styleUrl: './home-user.component.css'
 })

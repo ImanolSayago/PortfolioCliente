@@ -1,24 +1,27 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, ViewChild } from '@angular/core';
 import { NavBarAdminComponent } from "../nav-bar-admin/nav-bar-admin.component";
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProyectosService } from '../../Services/proyectos.service';
+import { ModalComponent } from '../../Shared/Components/modal/modal.component';
 
 @Component({
   selector: 'app-crear-proyecto',
   standalone: true,
-  imports: [NavBarAdminComponent, NgxDropzoneModule, CommonModule,ReactiveFormsModule],
+  imports: [NavBarAdminComponent, NgxDropzoneModule, CommonModule, ReactiveFormsModule, ModalComponent],
   templateUrl: './crear-proyecto.component.html',
   styleUrl: './crear-proyecto.component.css'
 })
 export class CrearProyectoComponent {
+  @ViewChild('modalSucces') modalSuccess!:ModalComponent;
+  @ViewChild('modalError') modalError!:ModalComponent;
 
   files: File[] = [];
-
+  cargando: boolean = false;
   servicioProyectos = inject(ProyectosService);
   fb = inject(FormBuilder);
-
+  cd = inject(ChangeDetectorRef);
   formulario = this.fb.nonNullable.group({
     titulo:["",Validators.required],
     descripcion:["",Validators.required],
@@ -41,7 +44,7 @@ subirProyecto() {
     alert("El formulario no está completo");
     return;
   }
-
+this.cargando = true;
   const formData = new FormData();
   formData.append("titulo", this.formulario.value.titulo ?? "");
   formData.append("descripcion", this.formulario.value.descripcion ?? "");
@@ -54,17 +57,22 @@ subirProyecto() {
 
   this.servicioProyectos.crearProyecto(formData).subscribe({
     next: (response: any) => {
+      this.cargando = false;
       console.log(response);  // Aquí recibirás el objeto JSON con {message, success}
       if (response.success) {
-        alert("Proyecto creado");
+        this.modalSuccess.open('Proyecto creado con exito')
         this.files=[];
+        this.formulario.reset();
+        this.cd.detectChanges();
       } else {
         alert("Error: " + response.message);
       }
     },
     error: (err: any) => {
+      this.cargando = false;
       console.log(err);
-      alert("Error al crear el proyecto");
+      this.modalError.open('El proyecto no se pudo crear, intente nuevamente');
+      this.cd.detectChanges();
     }
   });
 }

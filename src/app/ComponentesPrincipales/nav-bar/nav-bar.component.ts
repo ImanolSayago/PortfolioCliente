@@ -27,21 +27,19 @@ menuOpen = false;
     this.rutas.navigate(['contact']);
   }
 
-  scrollTo(section: string) {
-  const element = document.getElementById(section);
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-  if (!element) {
-    this.rutas.navigate(['/homeUser']).then(() => {
-      setTimeout(() => {
-        const el = document.getElementById(section);
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      },300);
-    });
-  }
+ scrollTo(section: string) {
+  this.menuOpen = false;
 
-  this.menuOpen = false; 
+  // Si ya estamos en el home, hacemos scroll suave
+  if (this.rutas.url === '/homeUser' || this.rutas.url === '/') {
+    const element = document.getElementById(section);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  } else {
+    // Si estamos en otra página, navegamos al home pasando el fragmento
+    this.rutas.navigate(['/homeUser'], { fragment: section });
+  }
 }
 
 }

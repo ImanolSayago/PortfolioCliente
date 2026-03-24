@@ -83,38 +83,80 @@ nav div ul li a img.login {
 }
 
 /* ---------------- MOBILE ---------------- */
-@media (max-width: 900px) {
-  .hamburger {
-    display: flex;
+
+@media (min-width: 1250px) {
+  .nav {
+    padding: 0 279px;
+  }
+}
+
+/* --- Ajustes Mobile --- */
+@media (max-width: 1300px) {
+  .nav {
+    height: 90px; /* Un poco más bajo en móvil para ganar espacio */
+    padding: 0 40px; /* Padding reducido para que el logo no se pegue */
   }
 
+  .nav-left .logo {
+    font-size: 20px; /* Tamaño más real para celulares */
+  }
+
+  .nav-left .txt {
+    font-size: 13px;
+  }
+
+  .hamburger {
+    display: flex; /* Aparece el icono */
+    z-index: 110;
+  }
+
+  .hamburger {
+    width: 30px;
+    height: 25px;
+  }
+
+
+
+  /* El menú desplegable */
   .nav-right {
     position: absolute;
-    top: 90px;
-    right: 0;
+    top: 90px; /* Debe coincidir con el alto del nav */
+    left: 0;
     width: 100%;
-    background: #f5f5f5;
+    background: #ffffff; /* Blanco para que no desentone */
+    box-shadow: 0 10px 15px rgba(0,0,0,0.05);
     overflow: hidden;
     max-height: 0;
-    transition: max-height .4s ease-in-out;
+    transition: max-height 0.4s ease-in-out;
   }
 
   .nav-right.open {
-    max-height: 280px;
+    max-height: 350px; /* Altura suficiente para los links */
+    border-bottom: 1px solid #eee;
   }
 
   .nav-right ul {
     flex-direction: column;
     text-align: center;
-    padding: 20px 0;
-    gap: 22px;
+    padding: 30px 0;
+    gap: 30px;
+    margin: 0;
   }
 
   .nav-right ul li a {
-    font-size: 22px;
+    font-size: 20px;
+    display: block; /* Para que sea más fácil de tocar con el dedo */
+    width: 100%;
   }
 
-  .nav-left .logo {
-    font-size: 30px;
+  .nav-right.open + .hamburger span:nth-child(1) {
+    transform: translateY(14px) rotate(45deg);
   }
+  .nav-right.open + .hamburger span:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-right.open + .hamburger span:nth-child(3) {
+    transform: translateY(-14px) rotate(-45deg);
+  }
+
 }

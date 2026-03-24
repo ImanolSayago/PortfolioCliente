@@ -1,10 +1,8 @@
 .presentacion-hero {
-  /* Usamos calc para restar la altura de tu navbar (120px) */
   height: calc(100vh - 120px); 
   width: 100%;
   overflow: hidden;
   position: relative;
-  /* Eliminamos el padding para que la imagen llegue a los bordes */
   padding: 0; 
   background: white;
   display: flex;
@@ -157,13 +155,13 @@ section .carta-proyecto img {
     
     text-align: center;
     color: white;
-    font-size: clamp(24px, 5vw, 42px);   /* ← así se adapta al tamaño */
+    font-size: clamp(24px, 5vw, 42px);   
     font-weight: 500;
     font-size: 70px;
     opacity: 0;
     transition: opacity 0.4s ease-in-out;
     
-    /* Esto es lo importante para que nunca se salga */
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -173,3 +171,37 @@ section .carta-proyecto img {
     opacity: 1;
 }
 
+@media (max-width: 1300px) {
+  .container {
+    padding: 0 40px; 
+  }
+  
+  .grid-proyectos {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .presentacion-hero {
+    height: calc(100vh - 120px); 
+  }
+
+  .portada-imagen {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+  .grid-proyectos {
+    grid-template-columns: 1fr; 
+    gap: 25px;
+  }
+
+  .carta-proyecto:nth-child(4n+1),
+  .carta-proyecto:nth-child(4n+3),
+  .carta-proyecto:nth-child(4n+2),
+  .carta-proyecto:nth-child(4n+4) {
+    grid-row: auto;    
+    aspect-ratio: 4 / 3; 
+  }
+  
+}

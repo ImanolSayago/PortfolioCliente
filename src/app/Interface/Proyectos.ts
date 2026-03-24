@@ -6,7 +6,7 @@ export interface ImagenProyecto {
 export interface Proyectos {
   id?: number;
   titulo?: string;
-  descripcion?: string;
   imagenPrincipal:string,
+  imagenPrincipalMobile:string,
   listaImg?: ImagenProyecto[];
 }

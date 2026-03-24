@@ -1,63 +1,98 @@
 .footer {
-    width: 100%;
-    height: 250px;
-    background-color: #ffffff; /* Asegúrate de que coincida con el nav o el color que desees */
-    color: white; /* Esto solo afectará al texto que no sea link */
-    
-    display: flex;
-    flex-direction: row;
-    /* CAMBIO CLAVE: Igual que el Nav para empujar a los extremos */
-    justify-content: space-between; 
-    align-items: center;
-    
-    /* CAMBIO CLAVE: El margen exacto que pediste */
-    padding: 0 279px; 
-    box-sizing: border-box;
-    
-    box-shadow: 0 -2px 1px rgba(0, 0, 0, 0.048);
+  width: 100%;
+  /* Usamos min-height para que el contenido respire si se apila */
+  min-height: 250px; 
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  
+  /* Padding fluido que coincide con la sección de contacto */
+  padding: 40px clamp(20px, 15%, 279px);
+  box-sizing: border-box;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.03);
 }
-a{
-  cursor: pointer;
-}
+
+/* Contenedor izquierdo */
 .nav-left {
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: flex-start;
   justify-content: center;
-  cursor: pointer;
 }
 
 .nav-left .logo {
-  font-size: 35px;
+  /* Tamaño de fuente fluido: mínimo 24px, máximo 35px */
+  font-size: clamp(24px, 2.5vw, 35px);
   font-weight: 400;
   color: #000000;
   text-decoration: none;
+  line-height: 1.1;
 }
-.nav-left .txt{
-  color:rgba(95, 95, 95, 0.788);
-  font-size: 22px;
+
+.nav-left .txt {
+  color: rgba(95, 95, 95, 0.7);
+  font-size: clamp(14px, 1.5vw, 22px);
   font-style: italic;
-} 
-
-footer ul{
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    text-align: right;
+  margin-top: 5px;
 }
 
-footer ul li{
-   margin: 20px 0;
+/* Menú de navegación */
+.nav-footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: right;
 }
 
-footer .nav-footer ul li a{
-    font-size: 22px;
-    text-decoration: none;
-    color: #000000;
-    transition: color 0.3s ease;
-    font-weight: 500;
+.nav-footer ul li {
+  /* Margen vertical que se reduce en pantallas pequeñas */
+  margin: clamp(8px, 1.2vw, 20px) 0;
 }
 
-footer .nav-footer ul li a:hover{
-    color: #a19b99;
+.nav-footer ul li a {
+  font-size: clamp(16px, 1.8vw, 22px);
+  text-decoration: none;
+  color: #000000;
+  transition: color 0.3s ease;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.nav-footer ul li a:hover {
+  color: #a19b99;
+}
+
+/* --- AJUSTES RESPONSIVE --- */
+@media (max-width: 1300px) {
+  .footer {
+    /* En tablets/celulares bajamos un poco la altura total */
+    min-height: 200px;
+    padding: 40px 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer {
+    /* En móviles muy chicos, podemos apilarlos o mantenerlos pero con cuidado */
+    gap: 40px;
+    padding: 60px 40px;
+  }
+
+  .nav-footer ul {
+    text-align: left; /* Cambiamos a la izquierda para que combine con el logo */
+  }
+  
+  .nav-footer ul li {
+    margin: 15px 0;
+  }
+
+  .nav-left .logo {
+ font-size: 20px; 
+}
+
+.nav-left .txt {
+ font-size: 13px; 
+}
 }

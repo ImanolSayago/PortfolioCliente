@@ -8,11 +8,7 @@
             <label>Título del proyecto</label>
             <input formControlName="titulo" type="text" placeholder="Ej: Identidad Visual Malharro">
         </div>
-        
-        <div class="contenido">
-            <label>Descripción</label>
-            <textarea formControlName="descripcion" placeholder="Cuenta de qué trata el proyecto..."></textarea>
-        </div>
+    
     </div>
 
     <label>Galería de imágenes</label>
@@ -20,7 +16,7 @@
         <ngx-dropzone-label>
             <div class="upload-icon">📁</div>
             Arrastra tus imágenes aquí o haz clic para buscar.
-            <br><small>La primer imagen sera la portada.</small>
+            <br><small>Las 2 primeras imágenes serán las portadas (1° Web, 2° Mobile).</small>
         </ngx-dropzone-label>
     </ngx-dropzone>
 
@@ -29,6 +25,7 @@
             <ngx-dropzone-image-preview [file]="f" [removable]="true" (removed)="onRemove(f)">
                 <ngx-dropzone-label>
                     <span *ngIf="i === 0" class="badge-principal">Portada</span>
+                    <span *ngIf="i === 1" class="badge-principal">Portada Mobile</span>
                 </ngx-dropzone-label>
             </ngx-dropzone-image-preview>
         </div>

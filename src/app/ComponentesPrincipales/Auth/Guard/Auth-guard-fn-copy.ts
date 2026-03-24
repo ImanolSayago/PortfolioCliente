@@ -2,18 +2,16 @@ import { inject } from "@angular/core"
 
 import { Router } from "@angular/router";
 
-export const authGuardFnLogout = ()=>
-{
+export const authGuardFnLogout = () => {
+  const router = inject(Router);
+  const token = localStorage.getItem("token");
 
-
-   const rutas = inject(Router);
-   if(!localStorage.getItem("token"))
-   {
-        return true;
-   }
-   else
-   {
-    rutas.navigate(["HomeAdmin"])
+  if (!token) {
+    // Si NO hay token, puede entrar al login/inicioSesion
+    return true;
+  } else {
+    // Si YA hay un token, lo mandamos directo al panel
+    router.navigate(["HomeAdmin"]);
     return false;
-   }
-}
+  }
+};

@@ -9,10 +9,6 @@
             <input formControlName="titulo" type="text">
         </div>
         
-        <div class="contenido">
-            <label>Descripción</label>
-            <textarea formControlName="descripcion"></textarea>
-        </div>
     </div>
 
     <label>Galería de imágenes</label>
@@ -23,24 +19,26 @@
         </ngx-dropzone-label>
     </ngx-dropzone>
 
-    <div class="image-preview-container" *ngIf="files.length > 0">
-        <div *ngFor="let f of files; let i = index" class="preview-card">
-            
-            <div *ngIf="esString(f)" class="image-wrapper">
-                <img [src]="f | cloudinaryOptimize:2000:2000 " class="img-preview">
-                <button type="button" class="btn-remove" (click)="onRemove(f)">×</button>
-                <span *ngIf="i === 0" class="badge-principal">Portada</span>
-            </div>
-
-            <ngx-dropzone-image-preview *ngIf="!esString(f)" [file]="f" [removable]="true" (removed)="onRemove(f)">
-                <ngx-dropzone-label>
-                    <span *ngIf="i === 0" class="badge-principal">Portada</span>
-                    <span class="badge-nuevo" *ngIf="i !== 0">Nuevo</span>
-                </ngx-dropzone-label>
-            </ngx-dropzone-image-preview>
-            
+  <div class="image-preview-container" *ngIf="files.length > 0">
+    <div *ngFor="let f of files; let i = index" class="preview-card">
+        
+        <div *ngIf="esString(f)" class="image-wrapper">
+            <img [src]="f | cloudinaryOptimize:2000:2000" class="img-preview">
+            <button type="button" class="btn-remove" (click)="onRemove(f)">×</button>
+            <span *ngIf="i === 0" class="badge-principal">Portada Web</span>
+            <span *ngIf="i === 1" class="badge-principal">Portada Mobile</span>
         </div>
+
+        <ngx-dropzone-image-preview *ngIf="!esString(f)" [file]="f" [removable]="true" (removed)="onRemove(f)">
+            <ngx-dropzone-label>
+                <span *ngIf="i === 0" class="badge-principal">Portada Web</span>
+                <span *ngIf="i === 1" class="badge-principal">Portada Mobile</span>
+                <span class="badge-nuevo" *ngIf="i > 1">Nuevo</span>
+            </ngx-dropzone-label>
+        </ngx-dropzone-image-preview>
+        
     </div>
+</div>
 
     <button type="submit" class="btn" [disabled]="formulario.invalid || files.length === 0">
         @if(!cargando)

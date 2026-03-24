@@ -19,8 +19,8 @@ export class MuestraProyectoComponent implements OnInit{
   proyecto:Proyectos ={
     id: 0,
     titulo:"",
-    descripcion:"",
     imagenPrincipal:"",
+    imagenPrincipalMobile:'',
     listaImg: []
   }
 

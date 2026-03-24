@@ -5,22 +5,14 @@
   justify-content: center;  
   align-items: center;
   position: relative;
-  /* Aplicamos el margen como padding lateral para que el contenido se empuje hacia adentro */
+  
+  /* Volvemos a tu margen original para clavar la alineación */
   padding: 0 279px; 
-  box-sizing: border-box; /* Importante para que el padding no sume al ancho total */
-}
-.titulo-sobre-mi {
-  font-size: 22px;
-  font-weight: 400;
-  position: absolute;
-  top: -135px;
-  left: 0;
-  margin: 0;
+  box-sizing: border-box;
 }
 
 .contenedor-sobre-mi {
   width: 100%;
-  /* Eliminamos el max-width fijo para que mande el padding de 279px de la sección */
   max-width: none; 
   margin: 0;
   display: flex;
@@ -29,6 +21,17 @@
   gap: 25px;
   position: relative; 
 }
+
+.titulo-sobre-mi {
+  font-size: 22px;
+  font-weight: 400;
+  position: absolute;
+  /* Mantenemos el absolute porque así es como se alinea al inicio del padding */
+  top: -135px;
+  left: 0;
+  margin: 0;
+}
+
 .img-sobre-mi {
   width: 125px;
   height: 155px;
@@ -41,23 +44,50 @@
 .texto-sobre-mi {
   font-size: 20px;
   line-height: 1.7;
-  padding-bottom: 20px;
   color: #333;
+  margin: 0;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1300px) {
+  .sobre-mi {
+    padding: 0 40px; /* Cambiamos a 40px de golpe como el resto */
+  }
+}
+
+/* 2. Salto para Tablets/Móviles */
+@media (max-width: 768px) {
+  .img-sobre-mi {
+  width: 105px;
+  height: 135px;}
+  
+.texto-sobre-mi {
+  font-size: 16px;
+  line-height: 1.7;
+
+}
   .sobre-mi {
     height: auto;
-    padding-top: 150px; 
-    padding-bottom: 50px;
+    padding: 100px 40px; 
+    display: block; 
+  }
+
+  .contenedor-sobre-mi {
+    margin-top: 40px;
   }
 
   .titulo-sobre-mi {
-    top: -80px;
-    font-size: 22px;
+    position: relative; 
+    top: 0;
+    margin-bottom: 30px;
   }
-  
+
   .texto-sobre-mi {
-    font-size: 18px;
+    font-size: 16px; 
+    padding-bottom: 40px;
+  }
+}
+@media (max-width: 380px){
+ .texto-sobre-mi {
+    font-size: 14px; 
   }
 }

@@ -40,32 +40,24 @@ export class LoginComponent implements OnInit{
   }
 
   onLoginLogout() {
-    if (this.formulario.valid) {
-      const credentials = this.formulario.value;  // Obtenemos los datos del formulario
-      
-      this.admin.nombreUsuario = this.formulario.value.usuario;
-      this.admin.contrasena = this.formulario.value.contrasena;
+  if (this.formulario.valid) {
+    this.admin.nombreUsuario = this.formulario.value.usuario;
+    this.admin.contrasena = this.formulario.value.contrasena;
 
-      this.authService.logIn(this.admin).subscribe(
-        (isAuthenticated) => {
-          if (isAuthenticated) {
-            // Si el login es exitoso, redirigimos al home
-            this.router.navigate(['HomeAdmin']);
-          } else {
-            // Si el login falla, mostramos un mensaje
-            alert('Error: Usuario o contraseña incorrectos');
-          }
-        },
-        (error) => {
-          // Aquí manejamos errores si la API falla
-          console.error('Error en la solicitud de login', error);
-          alert('Error en la solicitud de login');
-        }
-      );
-    } else {
-      // Si el formulario no es válido, mostramos un mensaje
-      alert('Por favor, completa todos los campos.');
-    }
+    this.authService.logIn(this.admin).subscribe({
+      next: (res) => {
+      
+        console.log('Login exitoso, token guardado');
+        this.router.navigate(['HomeAdmin']);
+      },
+      error: (err) => {
+        console.error('Error en el login', err);
+        alert('Usuario o contraseña incorrectos');
+      }
+    });
+  } else {
+    alert('Por favor, completa todos los campos.');
   }
+}
 
 }

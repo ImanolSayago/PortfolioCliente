@@ -17,11 +17,6 @@ menuOpen = false;
     this.rutas.navigate(["inicioSesion"]);
   }
 
-  goAbout()
-  {
-    this.rutas.navigate(['sobre-mi']);
-  }
-
   goContact()
   {
     this.rutas.navigate(['contact']);

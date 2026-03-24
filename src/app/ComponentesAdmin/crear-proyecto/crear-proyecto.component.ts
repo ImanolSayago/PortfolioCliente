@@ -24,7 +24,6 @@ export class CrearProyectoComponent {
   cd = inject(ChangeDetectorRef);
   formulario = this.fb.nonNullable.group({
     titulo:["",Validators.required],
-    descripcion:["",Validators.required],
   })
 
  
@@ -47,8 +46,6 @@ subirProyecto() {
 this.cargando = true;
   const formData = new FormData();
   formData.append("titulo", this.formulario.value.titulo ?? "");
-  formData.append("descripcion", this.formulario.value.descripcion ?? "");
-
   this.files.forEach((file) => {
     formData.append("archivos", file);
   });

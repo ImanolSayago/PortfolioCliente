@@ -8,32 +8,32 @@ import { Admin } from '../Interface/Admin';
   providedIn: 'root'
 })
 export class AuthServiceService {
+  private http = inject(HttpClient);
+  private apiURL = "http://localhost:8080/api/admin/login";
 
-  constructor() { }
-
-
-  apiURL = "http://localhost:8080/api/admin/login"
-
-  isLogin:boolean = false;
-
-  http = inject(HttpClient);
-
-  logIn(credentials: Admin): Observable<boolean> {  // Regresar un booleano para indicar si el login es exitoso
-    return this.http.post<boolean>(this.apiURL, credentials).pipe(
-      tap(isAuthenticated => {
-        this.isLogin = isAuthenticated;  
+  // Cambiamos el logIn para que maneje el objeto del Token
+  logIn(credentials: Admin): Observable<any> {
+    return this.http.post<any>(this.apiURL, credentials).pipe(
+      tap(res => {
+        // Guardamos igual que en MyM
+        if (res && res.token) {
+          localStorage.setItem('token', res.token);
+          localStorage.setItem('username', res.username);
+          localStorage.setItem('id', res.id.toString());
+        }
       })
     );
   }
 
   logOut() {
-    this.isLogin = false;
-    
+    localStorage.clear();
   }
 
   getIsLoggedIn(): boolean {
-    return this.isLogin;
+    return !!localStorage.getItem('token');
   }
 
- 
+  getToken() {
+    return localStorage.getItem('token');
+  }
 }

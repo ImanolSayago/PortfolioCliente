@@ -1,8 +1,7 @@
 <app-nav-bar></app-nav-bar>
 
 <div class="presentacion-hero">
-
-    <img src="img/portada.jpg" alt="Proyectos" class="portada-imagen">
+    <img src="img/fondo1.jpeg" alt="Proyectos" class="portada-imagen">
 </div>
 
 
@@ -13,17 +12,20 @@
     <div class="grid-proyectos">
   @for (item of listaproyectos; track $index) {
     <div class="carta-proyecto" [routerLink]="['/proyecto', item.id]">
-      <div class="img-container">
-        
-        @if (($index % 4 === 0) || ($index % 4 === 2)) {
-          <img [src]="item.imagenPrincipal | cloudinaryOptimize:2000:2000" [alt]="item.titulo">
-        } 
-        @else {
-          <img [src]="item.imagenPrincipal | cloudinaryOptimize:2000:2000" [alt]="item.titulo">
-        }
+     <div class="img-container">
+  <picture>
+    <source 
+      media="(max-width: 768px)" 
+      [srcset]="item.imagenPrincipalMobile | cloudinaryOptimize:800:1200">
+    
+    <img 
+      [src]="item.imagenPrincipal | cloudinaryOptimize:2000:2000" 
+      [alt]="item.titulo"
+      class="portada-imagen-grid">
+  </picture>
 
-        <div class="titulo-overlay">{{ item.titulo }}</div>
-      </div>
+  <div class="titulo-overlay">{{ item.titulo }}</div>
+</div>
     </div>
   }
 </div>

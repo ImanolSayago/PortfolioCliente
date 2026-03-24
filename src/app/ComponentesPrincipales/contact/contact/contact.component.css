@@ -1,41 +1,37 @@
 .contact {
   width: 100%;
-  height: calc(100vh - 250px);
+  /* Usamos min-height para que si el contenido crece, no se corte */
+  min-height: calc(100vh - 250px); 
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  padding: 0 279px; /* Margen fijo de los costados */
+  /* Padding fluido: 15% a los lados, pero nunca menos de 20px */
+  padding: 80px clamp(20px, 15%, 279px); 
   box-sizing: border-box;
 }
 
 .contenedor-contact {
   width: 100%;
-  max-width: none;
-  margin: 0;
   display: flex;
   flex-direction: column;
-  position: relative;
+  gap: 60px; /* Espacio real entre el título y los links */
 }
 
 .titulo-contact {
-  font-size: 22px;
+  font-size: clamp(20px, 2vw, 22px); /* Tamaño fluido */
   font-weight: 500;
-  position: absolute; 
-  top: -177px; 
-  left: 0; 
   margin: 0;
+  text-align: left;
 }
 
-/* LINKS REPARTIDOS */
 .links {
   display: flex;
   flex-direction: row;
   align-items: center;
-  /* CAMBIO CLAVE: Reparte los items ocupando todo el ancho disponible */
   justify-content: space-between; 
   width: 100%;
-  /* Quitamos el gap fijo para que el espacio sea automático */
+  flex-wrap: wrap; /* Permite que bajen si no caben antes del breakpoint */
+  gap: 20px;
 }
 
 .contact-links {
@@ -46,58 +42,56 @@
 }
 
 .contact-links img {
-  width: 85px;
-  height: 85px;
+  /* Tamaño fluido para las imágenes */
+  width: clamp(50px, 6vw, 85px);
+  height: clamp(50px, 6vw, 85px);
   object-fit: contain;
+  transition: transform 0.3s ease;
 }
-.contact-links img:hover
-{
+
+.contact-links img:hover {
   cursor: pointer;
+  transform: scale(1.1);
 }
 
 .contact-links a {
-  font-size: 25px;
+  font-size: clamp(16px, 1.8vw, 25px); /* Texto que se achica con la pantalla */
   text-decoration: none;
   color: black;
   transition: color .3s ease;
+  white-space: nowrap; /* Evita que el mail se parta en dos líneas */
 }
 
-.contact-links a:hover{
- color: #7d7d7d;
+.contact-links a:hover {
+  color: #7d7d7d;
 }
 
-/* ⭐ RESPONSIVE – Ajuste de márgenes */
-@media (max-width: 1400px) {
-  .contact {
-    padding: 0 100px; /* Reducimos margen si la pantalla no es tan ancha */
-  }
+/* --- RESPONSIVE --- */
+@media (max-width: 1425px){
+.contact-links a{
+  font-size: 22px;
 }
 
+.contact-links img {
+  height: 60px;
+  width: 60px;
+}
+}
+
+
+/* Cuando la pantalla es Tablet o Celular */
 @media (max-width: 900px) {
   .contact {
-    padding: 0 40px;
-  }
-  .contact-links a {
-    font-size: 22px;
-  }
-}
-
-@media (max-width: 600px) {
-  .contact {
-    height: auto;
-    padding: 100px 20px 50px 20px;
+    padding: 60px 30px;
   }
 
   .links {
     flex-direction: column;
-    align-items: start;
-    justify-content: start; /* En móvil volvemos al inicio */
-    gap: 25px;
+    align-items: flex-start; /* Alineado a la izquierda como pediste */
+    gap: 35px;
   }
 
-  .titulo-contact {
-    top: -60px;
-    position: relative;
-    margin-bottom: 30px;
+  .contenedor-contact {
+    gap: 40px;
   }
 }

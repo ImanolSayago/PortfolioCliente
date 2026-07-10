@@ -42,15 +42,21 @@ a{
   list-style: none;
 }
 
-.nav-right ul li a {
+.nav-right ul li a,
+.nav-right ul li button {
   text-decoration: none;
   color: #333;
   font-size: 20px;
   font-weight: 500;
   transition: color .3s ease;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: inherit;
 }
 
-.nav-right ul li a:hover {
+.nav-right ul li a:hover,
+.nav-right ul li button:hover {
   color: #7d7d7d;
 }
 
@@ -72,6 +78,9 @@ nav div ul li a img.login {
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
 }
 
 .hamburger span {
@@ -143,7 +152,8 @@ nav div ul li a img.login {
     margin: 0;
   }
 
-  .nav-right ul li a {
+  .nav-right ul li a,
+  .nav-right ul li button {
     font-size: 20px;
     display: block; /* Para que sea más fácil de tocar con el dedo */
     width: 100%;

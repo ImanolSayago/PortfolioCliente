@@ -1,35 +1,40 @@
 <app-nav-bar></app-nav-bar>
 
-<div class="presentacion-hero">
-    <img src="/img/fondo1.jpeg" alt="Proyectos" class="portada-imagen">
-</div>
+<main>
+  <h1 class="sr-only">Ignacio Yañez — Diseño Gráfico e Ilustración</h1>
 
-
-<section id="proyectos" class="proyectos">
-  <div class="container">
-     <h2>Proyectos</h2>
-
-    <div class="grid-proyectos">
-  @for (item of listaproyectos; track $index) {
-    <div class="carta-proyecto" [routerLink]="['/proyecto', item.id]">
-     <div class="img-container">
-  <picture>
-    <source 
-      media="(max-width: 768px)" 
-      [srcset]="item.imagenPrincipalMobile | cloudinaryOptimize:800:1200">
-    
-    <img 
-      [src]="item.imagenPrincipal | cloudinaryOptimize:2000:2000" 
-      [alt]="item.titulo"
-      class="portada-imagen-grid">
-  </picture>
-
-  <div class="titulo-overlay">{{ item.titulo }}</div>
-</div>
-    </div>
-  }
-</div>
+  <div class="presentacion-hero">
+      <img src="/img/fondo1.jpeg" alt="Trabajos destacados de diseño e ilustración de Ignacio Yañez" class="portada-imagen">
   </div>
-</section>
 
-<app-about-me></app-about-me>
+  <section id="proyectos" class="proyectos" aria-labelledby="proyectos-heading">
+    <div class="container">
+       <h2 id="proyectos-heading">Proyectos</h2>
+
+      <ul class="grid-proyectos">
+    @for (item of listaproyectos; track $index) {
+      <li class="carta-proyecto">
+       <a class="carta-proyecto-link" [routerLink]="['/proyecto', item.id]">
+       <div class="img-container">
+    <picture>
+      <source
+        media="(max-width: 768px)"
+        [srcset]="item.imagenPrincipalMobile | cloudinaryOptimize:800:1200">
+
+      <img
+        [src]="item.imagenPrincipal | cloudinaryOptimize:2000:2000"
+        [alt]="item.titulo"
+        class="portada-imagen-grid">
+    </picture>
+
+    <div class="titulo-overlay" aria-hidden="true">{{ item.titulo }}</div>
+  </div>
+       </a>
+      </li>
+    }
+  </ul>
+    </div>
+  </section>
+
+  <app-about-me></app-about-me>
+</main>

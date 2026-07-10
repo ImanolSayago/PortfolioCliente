@@ -101,7 +101,15 @@ width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 30px;
-  align-items: start;      
+  align-items: start;
+  list-style: none;
+}
+
+.carta-proyecto-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: inherit;
 }
 .carta-proyecto:nth-child(4n+1),
 .carta-proyecto:nth-child(4n+3) {

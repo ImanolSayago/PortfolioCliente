@@ -1,6 +1,5 @@
 import { inject, Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { Proyectos } from '../Interface/Proyectos';
 import { HttpClient } from '@angular/common/http';
 import { Admin } from '../Interface/Admin';
 
@@ -9,7 +8,7 @@ import { Admin } from '../Interface/Admin';
 })
 export class AuthServiceService {
   private http = inject(HttpClient);
-  private apiURL = "http://localhost:8080/api/admin/login";
+  private apiURL = "https://www.ignacioyañez.com/api/admin/login";
 
   // Cambiamos el logIn para que maneje el objeto del Token
   logIn(credentials: Admin): Observable<any> {

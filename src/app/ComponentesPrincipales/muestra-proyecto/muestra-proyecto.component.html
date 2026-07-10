@@ -1,14 +1,17 @@
 <app-nav-bar></app-nav-bar>
 
-<section class="project-showcase">
-  
-  <div class="gallery">
-    @for (img of proyecto.listaImg; track img.url) {
-      <div class="full-image">
-        <img [src]="img.url" alt="detalle" class="image">
-      </div>
-    }
-  </div>
-</section>
+<main>
+  <section class="project-showcase" aria-labelledby="proyecto-titulo">
+    <h1 id="proyecto-titulo" class="sr-only">{{ proyecto.titulo }}</h1>
+
+    <div class="gallery">
+      @for (img of proyecto.listaImg; track img.url; let i = $index) {
+        <div class="full-image">
+          <img [src]="img.url" [alt]="proyecto.titulo + ' - imagen ' + (i + 1)" class="image">
+        </div>
+      }
+    </div>
+  </section>
+</main>
 
 <app-footer></app-footer>

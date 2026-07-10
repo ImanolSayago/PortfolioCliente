@@ -17,7 +17,7 @@ export class ProyectosService {
   constructor() { }
    http = inject(HttpClient)
   
-    private apiUrl = 'http://localhost:8080/api/proyecto';
+    private apiUrl = 'https://www.ignacioyañez.com/api/proyecto';
   
     getProyectos():Observable<Proyectos[]>{
       const url = `${this.apiUrl}/traer`;

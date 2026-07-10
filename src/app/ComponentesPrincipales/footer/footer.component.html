@@ -1,23 +1,23 @@
 <footer id="footer" class="footer">
 
     <div class="nav-left">
-    <a href="" class="logo">Ignacio Yañez</a>
+    <a routerLink="/" class="logo">Ignacio Yañez</a>
     <p class="txt">Diseño/Ilustración</p>
     </div>
 
-     <div class="nav-footer">
+     <nav class="nav-footer" aria-label="Navegación de pie de página">
         <ul>
             <li>
-                <a (click)="scrollTo('proyectos')">Proyectos</a>
+                <button type="button" (click)="scrollTo('proyectos')">Proyectos</button>
             </li>
             <li>
-                <a (click)="scrollTo('sobre-mi')">Sobre mi</a>
+                <button type="button" (click)="scrollTo('sobre-mi')">Sobre mi</button>
             </li>
 
             <li>
-                <a (click)="goContact()" >Contacto</a>
+                <a routerLink="/contact">Contacto</a>
             </li>
         </ul>
-    </div>
+    </nav>
 
 </footer>

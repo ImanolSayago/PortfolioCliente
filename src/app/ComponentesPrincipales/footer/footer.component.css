@@ -8,8 +8,8 @@
   justify-content: space-between;
   align-items: center;
   
-  /* Padding fluido que coincide con la sección de contacto */
-  padding: 40px clamp(20px, 15%, 279px);
+  /* Padding fluido que coincide con navbar/about-me/proyectos */
+  padding: 40px clamp(40px, 38.55vw - 461px, 279px);
   box-sizing: border-box;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.03);
 }

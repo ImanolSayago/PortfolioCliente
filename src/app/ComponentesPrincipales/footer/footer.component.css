@@ -53,7 +53,7 @@
 
 .nav-footer ul li a,
 .nav-footer ul li button {
-  font-size: clamp(14px, 1.8vw, 20px);
+  font-size: 18px;
   text-decoration: none;
   color: #000000;
   transition: color 0.3s ease;

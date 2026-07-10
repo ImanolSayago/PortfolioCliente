@@ -79,6 +79,29 @@
   }
 }
 
+@media (min-width: 1301px) and (max-height: 900px) {
+  .sobre-mi {
+    height: auto;
+    display: block;
+    padding-top: 100px;
+    padding-bottom: 60px;
+  }
+
+  .contenedor-sobre-mi {
+    margin-top: 40px;
+  }
+
+  .titulo-sobre-mi {
+    position: relative;
+    top: 0;
+    margin-bottom: 30px;
+  }
+
+  .texto-sobre-mi {
+    font-size: 18px;
+  }
+}
+
 /* 3. Salto para Tablets/Móviles */
 @media (max-width: 768px) {
   .img-sobre-mi {

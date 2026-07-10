@@ -34,9 +34,11 @@
 
 .container {
   width: 100%;
-  max-width: none; 
-  padding: 0 279px; 
-  box-sizing: border-box; 
+  max-width: none;
+  /* Fluido: mismo clamp que navbar y sobre-mi para que las 3 secciones
+     sigan alineadas, pero sin quedar pegado en 279px hasta el salto. */
+  padding: 0 clamp(40px, 38.55vw - 461px, 279px);
+  box-sizing: border-box;
   margin: 0;
 }
 
@@ -101,17 +103,16 @@ width: 100%;
   gap: 30px;
   align-items: start;      
 }
-
 .carta-proyecto:nth-child(4n+1),
 .carta-proyecto:nth-child(4n+3) {
-  grid-row: span 2;
-  aspect-ratio: 3 / 5;        
+grid-row: span 2;
+  aspect-ratio: 665 / 747;   
 }
 
 
 .carta-proyecto:nth-child(4n+2),
 .carta-proyecto:nth-child(4n+4) {
-  aspect-ratio: 5 / 3;     
+  aspect-ratio: 665 / 492;  
 }
 section .carta-proyecto img {
   width: 100%;
@@ -157,7 +158,7 @@ section .carta-proyecto img {
     color: white;
     font-size: clamp(24px, 5vw, 42px);   
     font-weight: 500;
-    font-size: 70px;
+    font-size: 48px;
     opacity: 0;
     transition: opacity 0.4s ease-in-out;
     
@@ -169,16 +170,6 @@ section .carta-proyecto img {
 }
 .carta-proyecto:hover .titulo-overlay {
     opacity: 1;
-}
-
-@media (max-width: 1300px) {
-  .container {
-    padding: 0 40px; 
-  }
-  
-  .grid-proyectos {
-    gap: 20px;
-  }
 }
 
 @media (max-width: 768px) {

@@ -24,7 +24,7 @@
 
 .nav-left .logo {
   /* Tamaño de fuente fluido: mínimo 24px, máximo 35px */
-  font-size: clamp(24px, 2.5vw, 35px);
+   font-size: 26px;
   font-weight: 400;
   color: #000000;
   text-decoration: none;
@@ -33,7 +33,7 @@
 
 .nav-left .txt {
   color: rgba(95, 95, 95, 0.7);
-  font-size: clamp(14px, 1.5vw, 22px);
+  font-size: 15px;
   font-style: italic;
   margin-top: 5px;
 }
@@ -52,7 +52,7 @@
 }
 
 .nav-footer ul li a {
-  font-size: clamp(16px, 1.8vw, 22px);
+  font-size: clamp(14px, 1.8vw, 20px);
   text-decoration: none;
   color: #000000;
   transition: color 0.3s ease;
@@ -71,6 +71,16 @@
     min-height: 200px;
     padding: 40px 40px;
   }
+
+    .nav-left .logo {
+    font-size: 20px;
+  }
+
+    .nav-left .txt {
+    font-size: 13px;
+  }
+
+
 }
 
 @media (max-width: 600px) {

@@ -6,8 +6,11 @@
   align-items: center;
   position: relative;
   
-  /* Volvemos a tu margen original para clavar la alineación */
-  padding: 0 279px; 
+  /* Padding fluido: 279px desde 1920px de ancho para abajo va bajando
+     de a poco hasta 40px en 1300px (mismo valor y mismo punto que
+     usan el navbar y proyectos, así siguen alineados). Antes quedaba
+     fijo en 279px hasta pegar el salto brusco en 1300px. */
+  padding: 0 clamp(40px, 38.55vw - 461px, 279px);
   box-sizing: border-box;
 }
 
@@ -54,7 +57,29 @@
   }
 }
 
-/* 2. Salto para Tablets/Móviles */
+/* 2. Pantallas bajas tipo Nest Hub (1024x600): la sección queda muy
+   comprimida por el calc(100vh - 250px) y el título con top negativo
+   termina pisando la sección de Proyectos de arriba. Pasamos a flujo
+   normal con espaciado propio para separar ambas secciones. */
+@media (max-width: 1300px) and (max-height: 650px) {
+  .sobre-mi {
+    height: auto;
+    display: block;
+    padding: 100px 40px 60px;
+  }
+
+  .contenedor-sobre-mi {
+    margin-top: 40px;
+  }
+
+  .titulo-sobre-mi {
+    position: relative;
+    top: 0;
+    margin-bottom: 30px;
+  }
+}
+
+/* 3. Salto para Tablets/Móviles */
 @media (max-width: 768px) {
   .img-sobre-mi {
   width: 105px;

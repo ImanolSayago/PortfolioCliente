@@ -5,8 +5,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Padding fluido: 15% a los lados, pero nunca menos de 20px */
-  padding: 80px clamp(20px, 15%, 279px); 
+  /* Mismo padding fluido que navbar/footer/proyectos/sobre-mi, para que
+     los márgenes laterales coincidan con el footer en todas las
+     resoluciones (antes usaba 15vw y se desalineaba en notebook). */
+  padding: 80px clamp(40px, 38.55vw - 461px, 279px);
   box-sizing: border-box;
 }
 
@@ -82,7 +84,7 @@
 /* Cuando la pantalla es Tablet o Celular */
 @media (max-width: 900px) {
   .contact {
-    padding: 60px 30px;
+    padding: 60px 40px; /* 40px como el resto del margen chico del sitio */
   }
 
   .links {
@@ -93,5 +95,15 @@
 
   .contenedor-contact {
     gap: 40px;
+  }
+}
+
+/* Notebooks: mismo margen lateral más generoso que Nav/Proyectos/Sobre
+   mí/Footer. Lo mantenemos desde 1001px (mismo punto donde Proyectos
+   deja de apilar el grid en una columna y aparece el menú hamburguesa)
+   hasta que el clamp llega a 279px en desktop. */
+@media (min-width: 1001px) {
+  .contact {
+    padding: 80px clamp(130px, 38.55vw - 461px, 279px);
   }
 }

@@ -180,7 +180,22 @@ section .carta-proyecto img {
     opacity: 1;
 }
 
-@media (max-width: 768px) {
+/* Notebooks: mismo margen lateral más generoso que Nav/Sobre mí, para
+   que las cartas no lleguen tan pegadas al borde como pasaba antes.
+   Lo mantenemos desde 1001px (mismo punto donde el grid deja de apilar
+   en una columna y aparece el menú hamburguesa) hasta que el clamp
+   llega a 279px en desktop. Las cartas se achican solas al ganar
+   margen, ya que el grid usa fr. */
+@media (min-width: 1001px) {
+  .container {
+    padding: 0 clamp(130px, 38.55vw - 461px, 279px);
+  }
+}
+
+/* Por debajo de 1001px el menú ya es hamburguesa, así que el grid de
+   Proyectos pasa a una columna en el mismo punto (antes lo hacía recién
+   en 768px, dejando un tramo con nav mobile pero grid de 2 columnas). */
+@media (max-width: 1000px) {
   .presentacion-hero {
     height: calc(100vh - 120px); 
   }

@@ -70,6 +70,7 @@
 }
 
 /* --- AJUSTES RESPONSIVE --- */
+
 @media (max-width: 1300px) {
   .footer {
     /* En tablets/celulares bajamos un poco la altura total */
@@ -108,6 +109,19 @@
 }
 
 .nav-left .txt {
- font-size: 13px; 
+ font-size: 13px;
 }
+}
+
+/* Notebooks: mismo margen lateral más generoso que Nav/Proyectos/Sobre
+   mí, para que las 4 secciones sigan alineadas. Lo mantenemos desde
+   1001px (mismo punto donde Proyectos deja de apilar el grid en una
+   columna y aparece el menú hamburguesa) hasta que el clamp llega a
+   279px en desktop. Va al final del archivo para ganarle en cascada a
+   los @media de arriba (max-width: 1300px / 600px) en el rango donde
+   se superponen. */
+@media (min-width: 1001px) {
+  .footer {
+    padding: 40px clamp(130px, 38.55vw - 461px, 279px);
+  }
 }
